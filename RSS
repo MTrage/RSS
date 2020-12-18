@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# RSS (RAM Speed Score)
+# By Marc-André Tragé 2018-2020 free 4 all
+
+# Calculation model was recalculated by several tests and
+# the evaluation of the respective comparisons of DDR4 RAM!
+# It is correct in 99,984% of the tests compared with –
+# but this cannot replace the physical tests,
+# because the values stated by the manufacturer could also be inaccurate,
+# which can only be determined by test setups.
+
+   ENV="/usr/bin/env"
+
+normal=$(tput sgr0)
+  bold=$(tput bold)
+
+ fgcol=$(tput setaf 3)
+
+ b1col=$(tput setab 1)
+ bgcol=$(tput setab 18)
+ b2col=$(tput setab 17)
+
+# Timing multiplier for the Calculation model
+ TM1=8 # 1/4 values
+ TM2=2 # 2/4 values
+ TM3=2 # 3/4 values
+ TM4=1 # 4/4 values
+
+# BEG Help – Automatic output of help in the event of an incorrect entry!
+if [ ! $1 ] || [ ! $2 ] || [ ! $3 ] || [ ! $4 ] || [ ! $5 ]
+ then
+    echo ""
+    echo " ${fgcol}${b1col}${bold} RSS (RAM Speed Score)                                                        ${normal}"
+    echo " ${bgcol}                                                                              ${normal}"
+    echo " ${bgcol} ${normal}${b2col} ${bold}RSS${normal}${b2col} [${bold}TIME 1${normal}${b2col}] [${bold}TIME 2${normal}${b2col}] [${bold}TIME 3${normal}${b2col}] [${bold}TIME 4${normal}${b2col}] [${bold}Mhz Value${normal}${b2col}] [${bold}optional with -o${normal}${b2col}]     ${bgcol} ${normal}"
+    echo " ${bgcol} ${normal}${b2col}                                                                            ${bgcol} ${normal}"
+    echo " ${fgcol}${bgcol} ${b2col} ${bold}${b2col}Example:${normal}${fgcol}${b2col} RSS 18 15 15 15 3000                                              ${bgcol} ${normal}"
+    echo " ${fgcol}${bgcol} ${b2col} If you enter -o at the end of the values, you will only get the RSS value! ${bgcol} ${normal}"
+    echo " ${normal}${bgcol}${bold}                                                                              ${normal}"
+    echo ""
+    exit 1
+# END Help
+  else
+    # Calculation model
+    let TMA=$1*$TM1+$2*$TM2+$3*$TM3+$4*$TM4 TMB=$5*1000/TMA TMC=TMB/15
+    if [ "$6" = "-o" ]
+     then
+      echo $TMC
+      exit 1
+  else
+       echo ""
+       echo " ${fgcol}${b1col}${bold} RSS (RAM Speed Score) ${normal}"
+       echo " ${bgcol} The theoretical RSS value is ${bold}${bgcol}${fgcol}$TMC ${normal}"
+       echo "  The higher the RSS value, the better!"
+       echo ""
+       exit 1
+  fi
+fi
+exit
