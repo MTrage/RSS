@@ -5,16 +5,16 @@
 
     sh ./RSS
 
-or make executable with
+#### or make executable with
 
     chmod +x RSS
 
-Quick guide
+### Quick guide
 
     RSS [TIME 1] [TIME 2] [TIME 3] [TIME 4] [Mhz Value] [optional with -o]      
                                                                                
-Example 
+### Example 
 
     RSS 18 15 15 15 3000                                               
 
-If you enter -o at the end of the values, you will only get the RSS value!
+#### If you enter -o at the end of the values, you will only get the RSS value!
