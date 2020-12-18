@@ -18,3 +18,8 @@
     RSS 18 15 15 15 3000                                               
 
 #### If you enter -o at the end of the values, you will only get the RSS value!
+
+### Example 
+
+        RSS 18 15 15 15 3000 -o
+    
