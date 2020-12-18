@@ -5,7 +5,7 @@
 
     sh ./RSS
 
-#### or make executable with
+### or make executable with
 
     chmod +x RSS
 
